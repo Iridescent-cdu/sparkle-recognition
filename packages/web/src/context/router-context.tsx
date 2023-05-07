@@ -5,7 +5,7 @@ interface Props {
   children: ReactNode
 }
 /* 抽离ReactRouter 路由模式配置 */
-export const RouterContext: React.FC<Props> = ({ children }) => {
+export const RouterConfigProvider: React.FC<Props> = ({ children }) => {
   return (
     <BrowserRouter>
         {children}

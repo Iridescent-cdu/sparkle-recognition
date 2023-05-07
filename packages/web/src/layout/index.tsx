@@ -1,8 +1,8 @@
 /** @jsxImportSource @emotion/react */
+import React, { Suspense } from 'react'
 import type { ReactNode } from 'react'
 import styled from '@emotion/styled'
 import { Card, Spin } from 'antd'
-import { Suspense } from 'react'
 import logo from '@/assets/logo.svg'
 
 const AppLayoutContainer = styled.div`
