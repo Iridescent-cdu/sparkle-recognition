@@ -9,8 +9,7 @@ export class UserService {
   constructor(
     @InjectRepository(User)
     private usersRepository: Repository<User>,
-  ) {
-  }
+  ) {}
 
   async create(username: string, password: string) {
     const salt = await bcrypt.genSalt()

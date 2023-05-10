@@ -1,5 +1,4 @@
 import { Column, CreateDateColumn, Entity, Index, OneToMany, PrimaryGeneratedColumn, UpdateDateColumn } from 'typeorm'
-
 import { Image } from '../image/image.entity'
 
 @Entity()

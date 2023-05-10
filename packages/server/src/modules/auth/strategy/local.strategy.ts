@@ -3,6 +3,7 @@ import { PassportStrategy } from '@nestjs/passport'
 import { Strategy } from 'passport-local'
 import { AuthService } from '../auth.service'
 
+/* 密码验证策略 */
 @Injectable()
 export class LocalStrategy extends PassportStrategy(Strategy) {
   constructor(private readonly authService: AuthService) {
