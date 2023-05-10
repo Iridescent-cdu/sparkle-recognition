@@ -5,8 +5,21 @@ import { AppController } from './app.controller'
 import { AppService } from './app.service'
 import { configModuleRegister } from './config'
 import { TypeOrmModuleRegister } from './database'
+import { AuthModule } from './modules/auth/auth.module'
+import { UserModule } from './modules/user/user.module'
+import { ImageModule } from './modules/image/image.module'
+
+/* 自定义模块注册统一管理 */
+function customModuleRegister() {
+  return [
+    AuthModule,
+    UserModule,
+    ImageModule,
+  ] as const
+}
 
 @Module({
+  controllers: [AppController],
   imports: [
     /* 注册配置模块 */
     configModuleRegister(),
@@ -16,8 +29,9 @@ import { TypeOrmModuleRegister } from './database'
     }),
     /* 注册ORM模块 */
     TypeOrmModuleRegister(),
+    /* 注册自定义模块 */
+    ...customModuleRegister(),
   ],
-  controllers: [AppController],
   providers: [AppService],
 })
 export class AppModule {}

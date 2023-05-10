@@ -1,12 +1,14 @@
 import { NestFactory } from '@nestjs/core'
 
 import type { NestExpressApplication } from '@nestjs/platform-express'
+import { ValidationPipe } from '@nestjs/common'
 import { AppModule } from './app.module'
 import { securityPolicyConfig } from './security'
 
 declare const module: any
 async function bootstrap() {
   const app = await NestFactory.create<NestExpressApplication>(AppModule)
+  app.useGlobalPipes(new ValidationPipe())
   /* 为应用添加Web安全策略 */
   const safeApp = securityPolicyConfig(app)
   await safeApp.listen(3000)
