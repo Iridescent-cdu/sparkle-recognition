@@ -8,6 +8,7 @@ import { TypeOrmModuleRegister } from './database'
 import { AuthModule } from './modules/auth/auth.module'
 import { UserModule } from './modules/user/user.module'
 import { ImageModule } from './modules/image/image.module'
+import { StsModule } from './modules/sts/sts.module'
 
 /* 自定义模块注册统一管理 */
 function customModuleRegister() {
@@ -15,6 +16,7 @@ function customModuleRegister() {
     AuthModule,
     UserModule,
     ImageModule,
+    StsModule,
   ] as const
 }
 
@@ -31,6 +33,7 @@ function customModuleRegister() {
     TypeOrmModuleRegister(),
     /* 注册自定义模块 */
     ...customModuleRegister(),
+
   ],
   providers: [AppService],
 })

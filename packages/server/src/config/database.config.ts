@@ -4,7 +4,7 @@ import { registerAs } from '@nestjs/config'
  * database配置文件
  * 使用registerAs注册带命名空间的配置文件
  */
-export default registerAs('', () => {
+export default registerAs('database', () => {
   return {
     host: process.env.DATABASE_HOST,
     port: process.env.DATABASE_PORT,

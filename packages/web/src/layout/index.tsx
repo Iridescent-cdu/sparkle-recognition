@@ -41,6 +41,7 @@ const AppLayoutMain = styled.main`
   justify-content: center;
   align-items: center;
   flex: 1;
+  overflow: hidden;
 `
 
 interface Props {

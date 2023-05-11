@@ -5,11 +5,18 @@ import { createJSONStorage, persist } from 'zustand/middleware'
 interface state {
   token: string
 }
-interface action {}
+interface action {
+  setToken: (token: string) => void
+}
 export const useUserStore = create(persist(immer<state & action>(set => ({
-  // TODO 保存用户信息和token
   token: '',
+  setToken: (token: string) => set(() => (
+    {
+      token,
+    }
+  )),
 })), {
+  /* 持久化设置 */
   name: 'user',
   // 默认值为localStorage
   storage: createJSONStorage(() => localStorage),
