@@ -39,7 +39,7 @@ export function getRecognitionResult(imageUrl: string) {
   // return unAuthRequest.get('/recognition', {
   //   imageUrl,
   // })
-  new FetchService('https://6968y1r161.yicp.fun').get('test', { q: imageUrl })
+  new FetchService('https://127.0.0.1:8000').get('recognition', { imageUrl })
 }
 export function postRecognitionResult(recognitionResult: any) {
   return authRequest.post('image', recognitionResult, {})

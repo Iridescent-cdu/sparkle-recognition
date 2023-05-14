@@ -7,7 +7,12 @@ import { Card, Empty, Image, Spin, Statistic, message } from 'antd'
 import { Fragment, useEffect, useState } from 'react'
 import type { UploadFile } from 'antd/lib'
 import styled from '@emotion/styled'
-import { getStsToken, postImage, postRecognitionResult } from '@/service/modules/recognition/http.ts'
+import {
+  getRecognitionResult,
+  getStsToken,
+  postImage,
+  postRecognitionResult,
+} from '@/service/modules/recognition/http.ts'
 import { useUserStore } from '@/store/user'
 
 const RecognitionContainer = styled.div`
@@ -44,6 +49,7 @@ const Home: React.FC<Props> = () => {
   const [fileList, setFileList] = useState<UploadFile[]>([])
   const [isLoading, setIsLoading] = useState<boolean>(false)
   const [imageUrl, setImageUrl] = useState<string>('')
+  const [recoResult, setRecoResult] = useState<string>('')
   const userStore = useUserStore()
   // 不能是一个async函数
   useEffect(() => {
@@ -56,15 +62,15 @@ const Home: React.FC<Props> = () => {
     const stsToken = await getStsToken()
     const res = await postImage(stsToken, fileList[0])
     setImageUrl(res.url)
-    // const recoRes = await getRecognitionResult(`images/${fileList[0].name}`)
-    // TODO 获取图像识别结果
+
+    const recoRes: any = await getRecognitionResult(`images/${fileList[0].name}`)
+    setRecoResult(recoRes.result)
     if (userStore.token) {
       await postRecognitionResult({
         imageUrl: res.url,
-        recognitionResult: 'happy',
+        recognitionResult: recoRes.result,
       })
     }
-
     setIsLoading(false)
   }
   const imgCropProps: ImgCropProps = {
@@ -123,7 +129,7 @@ const Home: React.FC<Props> = () => {
           {imageUrl
             ? <Fragment>
               <Image width={200} src={imageUrl} />
-              <Statistic title='识别结果' value={'scale'} precision={2}></Statistic>
+              <Statistic title='识别结果' value={recoResult} precision={2}></Statistic>
             </Fragment>
             : <Empty description={'暂无识别数据'} style={{
               height: '20rem',
