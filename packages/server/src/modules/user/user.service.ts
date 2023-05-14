@@ -33,6 +33,19 @@ export class UserService {
     })
   }
 
+  getRankUserByImagesCount() {
+    return this.usersRepository
+      .createQueryBuilder('user')
+      .select('user.userId', 'id')
+      .addSelect('user.username', 'name')
+      .addSelect('COUNT(*)', 'count')
+      .leftJoin('user.images', 'image')
+      .groupBy('user.userId')
+      .orderBy('count', 'DESC')
+      .limit(4)
+      .getRawMany()
+  }
+
   async remove(id: number): Promise<void> {
     await this.usersRepository.delete(id)
   }

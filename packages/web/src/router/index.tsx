@@ -10,7 +10,7 @@ const Dashboard = React.lazy(() => import('@/views/dashboard'))
 const NotFound = React.lazy(() => import('@/views/404.tsx'))
 
 /* 路由表配置 */
-export const routes: RouteObject[] = [
+export const authRoutes: RouteObject[] = [
   {
     path: '/',
     element: <Navigate to={'home'}/>,
@@ -30,6 +30,28 @@ export const routes: RouteObject[] = [
   {
     path: '/dashboard',
     element: <Dashboard/>,
+  },
+  {
+    path: '*',
+    element: <NotFound/>,
+  },
+]
+export const unAuthRoutes: RouteObject[] = [
+  {
+    path: '/',
+    element: <Navigate to={'home'}/>,
+  },
+  {
+    path: '/home',
+    element: <Home/>,
+  },
+  {
+    path: '/login',
+    element: <Login/>,
+  },
+  {
+    path: '/register',
+    element: <Register />,
   },
   {
     path: '*',

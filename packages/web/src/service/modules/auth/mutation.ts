@@ -4,6 +4,7 @@ import { useNavigate } from 'react-router-dom'
 import { login, register } from './http.ts'
 import { useUserStore } from '@/store/user.ts'
 
+/* 登录 */
 export function useLogin() {
   const userStore = useUserStore()
   const [messageApi, contextHolder] = message.useMessage()
@@ -32,7 +33,7 @@ export function useLogin() {
     contextHolder,
   }
 }
-
+/* 注册 */
 export function useRegister() {
   const navigate = useNavigate()
   const [messageApi, contextHolder] = message.useMessage()

@@ -5,7 +5,7 @@ const baseUrl = import.meta.env.VITE_APP_BASE_URL
 export const authRequest = new FetchService(baseUrl, {
   headers: {
     // 使用Bearer Token
-    Authorization: `'Bearer' ${JSON.parse(localStorage.getItem('user') || '{}').state?.token}`,
+    Authorization: `Bearer ${JSON.parse(localStorage.getItem('user') || '{}').state?.token}`,
   },
 })
 export const unAuthRequest = new FetchService(baseUrl)

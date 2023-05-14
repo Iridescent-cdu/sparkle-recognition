@@ -14,6 +14,9 @@ export class Image {
   )
   imageUrl: string
 
+  @Column()
+  recognitionResult: string
+
   @CreateDateColumn()
   imageCreatedAt: Date
 

@@ -17,6 +17,7 @@ export class FetchService implements FetchServiceInterface {
     return window.fetch(`${this.baseUrl}/${url}`, {
       ...this.config,
       ...config,
+      headers: { ...this.config.headers, ...config.headers },
     }).then(async (res) => {
       const data: T = await res.json()
       if (res.ok)
@@ -36,7 +37,7 @@ export class FetchService implements FetchServiceInterface {
     })
   }
 
-  public post<T>(url: string, data: {}, config: Omit<RequestInit, 'method'> = {}) {
+  public post<T>(url: string, data: {}, config: Omit<RequestInit, 'method'>) {
     return this.request<T>(url, {
       headers: {
         'Content-Type': 'application/json',
@@ -47,18 +48,18 @@ export class FetchService implements FetchServiceInterface {
     })
   }
 
-  public delete<T>(url: string, data: {}, config: Omit<RequestInit, 'method'> = {}) {
+  public delete<T>(url: string, data: {}, config: Omit<RequestInit, 'method'>) {
     return this.request<T>(url, {
+      method: 'DELETE',
       headers: {
         'Content-Type': 'application/json',
       },
-      method: 'DELETE',
       body: JSON.stringify(data || {}),
       ...config,
     })
   }
 
-  public patch<T>(url: string, data: {}, config: Omit<RequestInit, 'method'> = {}) {
+  public patch<T>(url: string, data: {}, config: Omit<RequestInit, 'method'>) {
     return this.request<T>(url, {
       headers: {
         'Content-Type': 'application/json',

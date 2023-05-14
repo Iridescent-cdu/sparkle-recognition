@@ -1,5 +1,5 @@
 /** @jsxImportSource @emotion/react */
-import { Button, Card, Checkbox, Form, Input } from 'antd'
+import { Button, Card, Form, Input } from 'antd'
 import styled from '@emotion/styled'
 
 import { NavLink } from 'react-router-dom'
@@ -61,7 +61,7 @@ const Login: React.FC<Props> = () => {
             <Input.Password />
           </Form.Item>
           <Form.Item valuePropName={'checked'}>
-            <Checkbox>记住我</Checkbox>
+            {/* <Checkbox>记住我</Checkbox> */}
             <NavLink to={'/register'} className={'link-btn'}>去注册</NavLink>
           </Form.Item>
           <Form.Item>

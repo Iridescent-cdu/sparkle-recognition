@@ -1,13 +1,12 @@
 import './App.css'
-import { useRoutes } from 'react-router-dom'
 import { AppLayout } from './layout'
-import { routes } from '@/router'
+import { AuthGuard } from '@/router/auth-guard.tsx'
 
 function App() {
   return (
     <div className={'App'}>
       <AppLayout>
-          {useRoutes(routes)}
+          <AuthGuard ></AuthGuard>
       </AppLayout>
     </div>
   )
